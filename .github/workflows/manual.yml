@@ -20,3 +20,25 @@ jobs:
     # Runs a single command using the runners shell
     - name: Compile Java Files
       run: javac *.java
+
+  testAdd:
+    runs-on: ubuntu-latest
+    container: openjdk
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Compile and Run Test
+      run: |
+        javac -cp ".:junit-4.10.jar" *.java
+        java -cp ".:junit-4.10.jar" org.junit.runner.JUnitCore TestAdd
+
+  testSub:
+    runs-on: ubuntu-latest
+    container: openjdk
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Compile and Run Test
+      run: |
+        javac -cp ".:junit-4.10.jar" *.java
+        java -cp ".:junit-4.10.jar" org.junit.runner.JUnitCore TestSub
